@@ -13,20 +13,80 @@ export const enum AuthStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum SortingDifficulty {
-  Any = 'Любой',
-  Easy = 'Легкий',
-  Medium = 'Средний',
-  Hard = 'Сложный',
+export const SortingDifficulty = [
+  {
+    value: 'Любой',
+    id: 'any'
+  },
+  {
+    value: 'Легкий',
+    id: 'easy'
+  },
+  {
+    value: 'Средний',
+    id: 'medium'
+  },{
+    value: 'Сложный',
+    id: 'hard'
+  }
+];
+
+export const enum APIRoute {
+  Login = '/login',
+  Logout = '/logout',
+  Quest = '/quest',
 }
 
-export enum SortingTheme {
-  Adventures = 'Приключения',
-  Horrors = 'Ужасы',
-  Mystic = 'Мистика',
-  Detective = 'Детектив',
-  SciFi = 'Sci-fi',
-
+export const enum NameSpace {
+  Quests = 'QUESTS',
+  User = 'USER',
 }
+
+export const SortingTheme = [
+  {
+    value: 'Все квесты',
+    id: 'all',
+    iconName: '#icon-all-quests',
+    iconW: 26,
+    iconH: 30,
+  },
+  {
+    value: 'Приключения',
+    id: 'adventure',
+    iconName: '#icon-adventure',
+    iconW: 36,
+    iconH: 30,
+  },
+  {
+    value: 'Ужасы',
+    id: 'horror',
+    iconName: '#icon-horror',
+    iconW: 30,
+    iconH: 30,
+  },
+  {
+    value: 'Мистика',
+    id: 'mystic',
+    iconName: '#icon-mystic',
+    iconW: 30,
+    iconH: 30,
+  },
+  {
+    value: 'Детектив',
+    id: 'detective',
+    iconName: '#icon-detective',
+    iconW: 40,
+    iconH: 30,
+  },
+  {
+    value: 'Ski-fi',
+    id: 'sciFi',
+    iconName: '#icon-sci-fi',
+    iconW: 28,
+    iconH: 30,
+  },
+
+];
+
 
 export const BACKEND_URL = 'https://grading.design.pages.academy/v1/escape-room/';

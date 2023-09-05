@@ -3,7 +3,11 @@ export type TQuest = {
   title: string;
   previewImg: string;
   previewImgWebp: string;
-  level: 'easy'|'medium'|'hard';
-  type: 'adventures'|'horror'|'mystic'|'detective'|'sci-fi';
+  level: TLevel;
+  type: TTheme;
   peopleMinMax: number[];
 }
+
+
+type TTheme = 'adventures'|'horror'|'mystic'|'detective'|'sci-fi';
+type TLevel = 'easy'|'medium'|'hard';

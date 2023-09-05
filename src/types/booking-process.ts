@@ -6,5 +6,4 @@ export type TBookingProcess = {
   withChildren: boolean;
   peopleCount: number;
   placeId: string;
-
 }
