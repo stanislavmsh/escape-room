@@ -12,3 +12,21 @@ export const enum AuthStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export enum SortingDifficulty {
+  Any = 'Любой',
+  Easy = 'Легкий',
+  Medium = 'Средний',
+  Hard = 'Сложный',
+}
+
+export enum SortingTheme {
+  Adventures = 'Приключения',
+  Horrors = 'Ужасы',
+  Mystic = 'Мистика',
+  Detective = 'Детектив',
+  SciFi = 'Sci-fi',
+
+}
+
+export const BACKEND_URL = 'https://grading.design.pages.academy/v1/escape-room/';

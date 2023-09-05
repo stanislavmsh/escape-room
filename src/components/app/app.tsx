@@ -27,7 +27,7 @@ export default function App() : JSX.Element {
           element = { <ContactsPage /> }
         />
         <Route
-          path={AppRoute.Booking}
+          path={`${AppRoute.Quest}/:id${AppRoute.Booking}`}
           element = { <BookingPage /> }
         />
         <Route

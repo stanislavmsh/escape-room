@@ -1,5 +1,12 @@
+import { Link } from 'react-router-dom';
+// import { useState } from 'react';
+import { AppRoute } from '../../const';
+import { useLocation } from 'react-router-dom';
+import cn from 'classnames';
 
 export default function Header() : JSX.Element {
+
+  const currentLocation = useLocation().pathname;
 
   return(
     <header className="header">
@@ -15,20 +22,20 @@ export default function Header() : JSX.Element {
         </a>
         <nav className="main-nav header__main-nav">
           <ul className="main-nav__list">
-            <li className="main-nav__item">
-              <a className="link not-disabled" href="index.html">
+            <li className='main-nav__item'>
+              <Link className={cn('link not-disabled' , {'active' : currentLocation === AppRoute.Root})} to={AppRoute.Root}>
                 Квесты
-              </a>
+              </Link>
             </li>
             <li className="main-nav__item">
-              <a className="link" href="contacts.html">
+              <Link className={cn('link' , {'active' : currentLocation === AppRoute.Contacts})} to={AppRoute.Contacts}>
                 Контакты
-              </a>
+              </Link>
             </li>
             <li className="main-nav__item">
-              <a className="link active" href="my-quests.html">
+              <Link className={cn('link' , {'active' : currentLocation === AppRoute.MyQuests})} to={AppRoute.MyQuests}>
                 Мои бронирования
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
