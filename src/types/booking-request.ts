@@ -1,4 +1,4 @@
-export type TBookingProcess = {
+export type TBookingRequest = {
   date: 'today'| 'tomorrow';
   time: string;
   contactPerson: string;

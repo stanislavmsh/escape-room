@@ -35,7 +35,7 @@ export default function Card({quest} : TCardProps) : JSX.Element {
       </div>
       <div className="quest-card__content">
         <div className="quest-card__info-wrapper">
-          <Link className="quest-card__link" to="quest.html">
+          <Link className="quest-card__link" to={`/quest/${quest.id}`}>
             {quest.title}
           </Link>
         </div>

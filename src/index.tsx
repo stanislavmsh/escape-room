@@ -5,8 +5,10 @@ import { store } from './store';
 import { fetchQuestAction } from './store/quests-data/quests-data.action';
 import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
+import { checkAuthAction } from './store/user-process/user-process.action';
 import 'react-toastify/dist/ReactToastify.css';
 
+store.dispatch(checkAuthAction());
 store.dispatch(fetchQuestAction());
 
 const root = ReactDOM.createRoot(

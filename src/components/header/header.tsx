@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { useCallback } from 'react';
 import { AppRoute, AuthStatus } from '../../const';
 import { useLocation } from 'react-router-dom';
-import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getAuthStatus } from '../../store/user-process/user-process.selectors';
 import { logoutAction } from '../../store/user-process/user-process.action';
+import cn from 'classnames';
 
 export default function Header() : JSX.Element {
   const dispatch = useAppDispatch();
@@ -53,7 +53,7 @@ export default function Header() : JSX.Element {
         </nav>
         <div className="header__side-nav">
           {
-            isLoggedIn
+            currentLocation !== AppRoute.Login && (isLoggedIn
               ?
               <Link onClick={handleLogout} className="btn btn--accent header__side-item" to={AppRoute.Root}>
             Выйти
@@ -61,7 +61,7 @@ export default function Header() : JSX.Element {
               :
               <Link className="btn header__side-item" to={AppRoute.Login}>
             Вход
-              </Link>
+              </Link>)
           }
           <a
             className="link header__side-item header__phone-link"

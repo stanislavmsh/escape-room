@@ -32,6 +32,7 @@ export default function LoginForm() {
   const handleSubmit = (evt : FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     dispatch(loginAction(inputValues));
+    setIsChecked(false);
   };
 
   const regexEmail = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
@@ -98,6 +99,7 @@ export default function LoginForm() {
              id="id-order-agreement"
              name="user-agreement"
              onClick={handleCheckboxClick}
+             checked={isChecked}
              required
            />
            <span className="custom-checkbox__icon">

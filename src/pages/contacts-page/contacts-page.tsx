@@ -1,7 +1,10 @@
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 
+import ContactsMap from '../../components/contacts-map/contacts-map';
+
 export default function ContactsPage() : JSX.Element {
+
 
   return(
     <>
@@ -359,7 +362,7 @@ export default function ContactsPage() : JSX.Element {
               </dl>
               <div className="contacts__map">
                 <div className="map">
-                  <div className="map__container" />
+                  <ContactsMap />
                 </div>
               </div>
             </div>

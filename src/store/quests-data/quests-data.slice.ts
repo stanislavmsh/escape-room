@@ -20,24 +20,24 @@ export const questsData = createSlice({
   reducers: {
     sortQuestsByTheme: (state , action: PayloadAction<string>) => {
       switch (action.payload) {
-        case SortingTheme[0].id: // all
+        case SortingTheme[0].id:
           state.currentTheme = action.payload;
-          state.sortedQuests = state.quests.filter((elem) => state.currentDifficulty === 'any' || elem.level === state.currentDifficulty);
+          state.sortedQuests = state.quests.filter((elem) => state.currentDifficulty === SortingDifficulty[0].id || elem.level === state.currentDifficulty);
           break;
         default:
           state.currentTheme = action.payload;
-          state.sortedQuests = state.quests.filter((elem) => elem.type === action.payload && (state.currentDifficulty === 'any' || elem.level === state.currentDifficulty));
+          state.sortedQuests = state.quests.filter((elem) => elem.type === action.payload && (state.currentDifficulty === SortingDifficulty[0].id || elem.level === state.currentDifficulty));
       }
     },
     sortQuestsByDifficulty: (state, action: PayloadAction<string>) => {
       switch (action.payload) {
-        case SortingDifficulty[0].id: // any
+        case SortingDifficulty[0].id:
           state.currentDifficulty = action.payload;
-          state.sortedQuests = state.quests.filter((elem) => state.currentTheme === 'all' || elem.type === state.currentTheme);
+          state.sortedQuests = state.quests.filter((elem) => state.currentTheme === SortingTheme[0].id || elem.type === state.currentTheme);
           break;
         default:
           state.currentDifficulty = action.payload;
-          state.sortedQuests = state.quests.filter((elem) => elem.level === action.payload && (state.currentTheme === 'all' || elem.type === state.currentTheme));
+          state.sortedQuests = state.quests.filter((elem) => elem.level === action.payload && (state.currentTheme === SortingTheme[0].id || elem.type === state.currentTheme));
       }
     }
 

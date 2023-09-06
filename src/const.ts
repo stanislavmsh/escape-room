@@ -29,7 +29,7 @@ export const SortingDifficulty = [
     value: 'Сложный',
     id: 'hard'
   }
-];
+] as const;
 
 export const enum APIRoute {
   Login = '/login',
@@ -86,7 +86,9 @@ export const SortingTheme = [
     iconH: 30,
   },
 
-];
+] as const;
 
 
 export const BACKEND_URL = 'https://grading.design.pages.academy/v1/escape-room/';
+export const URL_MARKER_DEFAULT = '../markup/img/svg/pin-default.svg';
+export const URL_MARKER_ACTIVE = '../markup/img/svg/pin-active.svg';
