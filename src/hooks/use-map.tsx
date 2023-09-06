@@ -2,7 +2,7 @@ import {useEffect, useState, MutableRefObject, useRef} from 'react';
 import {Map, TileLayer} from 'leaflet';
 import { TLocation } from '../types/booking';
 
-export default function useMap (mapRef: MutableRefObject<HTMLElement | null>, location: TLocation) : Map | null {
+export default function useMap (mapRef: MutableRefObject<HTMLElement | null>, location: TLocation, isBooking: boolean) : Map | null {
   const {coords} = location;
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
@@ -14,7 +14,7 @@ export default function useMap (mapRef: MutableRefObject<HTMLElement | null>, lo
           lat: coords[0],
           lng: coords[1],
         },
-        zoom: 25
+        zoom: isBooking ? 10 : 25
       });
 
       const layer = new TileLayer(
@@ -30,7 +30,7 @@ export default function useMap (mapRef: MutableRefObject<HTMLElement | null>, lo
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, coords]);
+  }, [mapRef, coords, isBooking]);
 
   return map;
 }

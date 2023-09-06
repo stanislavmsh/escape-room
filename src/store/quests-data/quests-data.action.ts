@@ -16,3 +16,4 @@ export const fetchQuestAction = createAsyncThunk<TQuest[], undefined, {
     return data;
   }
 );
+

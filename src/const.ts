@@ -4,7 +4,8 @@ export const enum AppRoute {
   Contacts = '/contacts',
   Booking = '/booking',
   MyQuests = '/my-quests',
-  Quest = '/quest'
+  Quest = '/quest',
+  NotFound = '/not-found'
 }
 
 export const enum AuthStatus {
@@ -40,6 +41,7 @@ export const enum APIRoute {
 export const enum NameSpace {
   Quests = 'QUESTS',
   User = 'USER',
+  SingleQuest = 'SINGLEQUEST',
 }
 
 export const SortingTheme = [
@@ -89,6 +91,6 @@ export const SortingTheme = [
 ] as const;
 
 
-export const BACKEND_URL = 'https://grading.design.pages.academy/v1/escape-room/';
-export const URL_MARKER_DEFAULT = '../markup/img/svg/pin-default.svg';
-export const URL_MARKER_ACTIVE = '../markup/img/svg/pin-active.svg';
+export const BACKEND_URL = 'https://grading.design.pages.academy/v1/escape-room';
+// export const URL_MARKER_DEFAULT = '../markup/img/svg/pin-default.svg';
+// export const URL_MARKER_ACTIVE = '../markup/img/svg/pin-active.svg';

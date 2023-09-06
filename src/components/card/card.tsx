@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { TQuest } from '../../types/quest';
-import { SortingDifficulty } from '../../const';
+import { humanizeDifficuly } from '../../utils/utils';
 
 type TCardProps = {
   quest: TQuest;
@@ -8,12 +8,7 @@ type TCardProps = {
 
 export default function Card({quest} : TCardProps) : JSX.Element {
 
-  const difficulty = SortingDifficulty.map((elem) => {
-    if (elem.id === quest.level) {
-      return elem.value;
-    }
-  }
-  );
+  const difficulty = humanizeDifficuly(quest.level);
 
   return(
 

@@ -5,11 +5,11 @@ export type TBooking = {
 }
 
 export type TLocation = {
-  adress: string;
+  address: string;
   coords: number[];
 }
 
-type TSlots = {
+export type TSlots = {
   today: TTime[];
   tomorrow: TTime[];
 }
