@@ -52,7 +52,11 @@ export default function App() : JSX.Element {
         />
         <Route
           path={`${AppRoute.Quest}/:id${AppRoute.Booking}`}
-          element = { <BookingPage /> }
+          element = {
+            <PrivateRoute authStatus={authorizationStatus}>
+              <BookingPage />
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.MyQuests}

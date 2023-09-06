@@ -3,6 +3,7 @@ import { AuthStatus } from '../const';
 import { TQuest} from './quest';
 import { TCurrentQuest } from './current-quest';
 import { TBooking } from './booking';
+import { TBookingStatus } from './booking-status';
 
 export type TUserProcess = {
   authorizationStatus: AuthStatus;
@@ -16,6 +17,7 @@ export type TQuestsData = {
   sortedQuests: TQuest[];
   isDataLoading: boolean;
   hasError: boolean;
+  reservations: TBookingStatus[];
 }
 
 export type TSingleQuestData = {

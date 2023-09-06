@@ -3,8 +3,13 @@ import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import Sorting from '../../components/sorting/sorting';
 import Svgs from '../../components/svgs/svgs';
+import { useAppSelector } from '../../hooks';
+import { getSortedQuests } from '../../store/quests-data/quests-data.selectors';
+
 
 export default function MainPage() {
+
+  const questsList = useAppSelector(getSortedQuests);
   return(
     <>
       <Svgs />
@@ -22,7 +27,7 @@ export default function MainPage() {
             </div>
             <Sorting />
             <h2 className="title visually-hidden">Выберите квест</h2>
-            <Cards />
+            <Cards questsList={questsList} isReservations={false}/>
           </div>
         </main>
         <Footer />

@@ -98,7 +98,7 @@ export default function LoginForm() {
              type="checkbox"
              id="id-order-agreement"
              name="user-agreement"
-             onClick={handleCheckboxClick}
+             onChange={handleCheckboxClick}
              checked={isChecked}
              required
            />

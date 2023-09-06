@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { TQuestsData } from '../../types/state';
 import { NameSpace } from '../../const';
-import { fetchQuestAction } from './quests-data.action';
+import { fetchQuestAction, fetchReservationAction } from './quests-data.action';
 import { SortingDifficulty , SortingTheme } from '../../const';
 
 
@@ -12,6 +12,7 @@ const initialState: TQuestsData = {
   sortedQuests: [],
   isDataLoading: false,
   hasError: false,
+  reservations: [],
 };
 
 export const questsData = createSlice({
@@ -48,12 +49,23 @@ export const questsData = createSlice({
       .addCase(fetchQuestAction.pending, (state) => {
         state.isDataLoading = true;
       })
+      .addCase(fetchReservationAction.pending, (state) => {
+        state.isDataLoading = true;
+      })
       .addCase(fetchQuestAction.fulfilled, (state, action) => {
         state.quests = action.payload;
         state.sortedQuests = action.payload;
         state.isDataLoading = false;
       })
+      .addCase(fetchReservationAction.fulfilled, (state, action) => {
+        state.reservations = action.payload;
+        state.isDataLoading = false;
+      })
       .addCase(fetchQuestAction.rejected, (state) => {
+        state.isDataLoading = false;
+        state.hasError = true;
+      })
+      .addCase(fetchReservationAction.rejected, (state) => {
         state.isDataLoading = false;
         state.hasError = true;
       });

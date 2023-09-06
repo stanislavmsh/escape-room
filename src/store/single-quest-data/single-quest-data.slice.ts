@@ -6,7 +6,7 @@ import { TCurrentQuest } from '../../types/current-quest';
 import { TBooking } from '../../types/booking';
 
 const initialState: TSingleQuestData = {
-  quest: null,
+  quest: undefined,
   bookingInfo: [],
   hasError: false,
   isDataLoading: false,

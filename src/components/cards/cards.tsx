@@ -1,14 +1,17 @@
-import { useAppSelector } from '../../hooks';
-import { getSortedQuests } from '../../store/quests-data/quests-data.selectors';
+import { TBookingStatus } from '../../types/booking-status';
+import { TQuest } from '../../types/quest';
 import Card from '../card/card';
 
-export default function Cards() {
+type TCardsProps = {
+  questsList: TQuest[] | TBookingStatus[];
+  isReservations : boolean;
+}
 
-  const questsList = useAppSelector(getSortedQuests);
+export default function Cards({questsList, isReservations} : TCardsProps) {
 
   return(
     <div className="cards-grid">
-      {questsList.map((elem) => <Card quest={elem} key={elem.id}/>)}
+      {questsList.map((elem) => <Card isReservations={isReservations} data={elem} key={elem.id}/>)}
     </div>
   );
 }

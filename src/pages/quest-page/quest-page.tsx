@@ -6,7 +6,7 @@ import { fetchSingleQuestAction } from '../../store/single-quest-data/single-que
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getCurrentLoadingStatus, getCurrentQuest } from '../../store/single-quest-data/single-quest-data.selectors';
 import LoadingScreen from '../loading-page/loading-page';
-import { humanizeDifficuly, humanizeTheme } from '../../utils/utils';
+import { humanizeDifficulty, humanizeTheme } from '../../utils/utils';
 import { AppRoute } from '../../const';
 
 export default function QuestPage(): JSX.Element {
@@ -20,7 +20,7 @@ export default function QuestPage(): JSX.Element {
 
   const currentQuest = useAppSelector(getCurrentQuest);
 
-  const difficulty = humanizeDifficuly(currentQuest?.level);
+  const difficulty = humanizeDifficulty(currentQuest?.level);
   const theme = humanizeTheme(currentQuest?.type);
 
   if(isLoading || currentQuest === null) {

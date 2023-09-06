@@ -16,8 +16,8 @@ export const fetchSingleQuestAction = createAsyncThunk<void, string, {
   'data/fetchSingleQuest',
   async (id , { dispatch })=> {
     const urls = [
-      `${BACKEND_URL + AppRoute.Quest}/${id}`,
-      `${BACKEND_URL + APIRoute.Quest}/${id + AppRoute.Booking}`
+      `${BACKEND_URL + APIRoute.Quest}/${id}`,
+      `${BACKEND_URL + APIRoute.Quest}/${id + APIRoute.Booking}`
     ];
 
     const requests = urls.map((url) =>

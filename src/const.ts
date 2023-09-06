@@ -36,6 +36,8 @@ export const enum APIRoute {
   Login = '/login',
   Logout = '/logout',
   Quest = '/quest',
+  Reservation = '/reservation',
+  Booking = '/booking',
 }
 
 export const enum NameSpace {
@@ -88,7 +90,7 @@ export const SortingTheme = [
     iconH: 30,
   },
 
-] as const;
+];
 
 
 export const BACKEND_URL = 'https://grading.design.pages.academy/v1/escape-room';

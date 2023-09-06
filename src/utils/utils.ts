@@ -1,6 +1,6 @@
 import { SortingDifficulty, SortingTheme } from '../const';
 
-export function humanizeDifficuly(value: string | undefined) {
+export function humanizeDifficulty(value: string | undefined) {
   return SortingDifficulty.map((elem) => {
     if(elem.id === value) {
       return elem.value;

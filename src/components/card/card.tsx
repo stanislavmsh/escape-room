@@ -1,14 +1,27 @@
 import { Link } from 'react-router-dom';
 import { TQuest } from '../../types/quest';
-import { humanizeDifficuly } from '../../utils/utils';
+import { humanizeDifficulty } from '../../utils/utils';
+import { TBookingStatus } from '../../types/booking-status';
 
 type TCardProps = {
-  quest: TQuest;
+  data: TQuest | TBookingStatus;
+  isReservations: boolean;
 }
 
-export default function Card({quest} : TCardProps) : JSX.Element {
+export default function Card({data , isReservations} : TCardProps) : JSX.Element {
 
-  const difficulty = humanizeDifficuly(quest.level);
+  let difficulty;
+  let quest;
+  let detailedInfo;
+
+  if('level' in data) {
+    difficulty = humanizeDifficulty(data.level);
+    quest = data;
+  } else {
+    difficulty = humanizeDifficulty(data.quest.level);
+    quest = data.quest;
+    detailedInfo = data;
+  }
 
   return(
 
@@ -30,16 +43,29 @@ export default function Card({quest} : TCardProps) : JSX.Element {
       </div>
       <div className="quest-card__content">
         <div className="quest-card__info-wrapper">
-          <Link className="quest-card__link" to={`/quest/${quest.id}`}>
+          <Link className="quest-card__link" to={`/quest/${data.id}`}>
             {quest.title}
           </Link>
+          {isReservations
+            ?
+            <span className="quest-card__info">
+              {detailedInfo?.date},&nbsp;{detailedInfo?.time}. {detailedInfo?.location.address}
+            </span>
+            :
+            ''}
         </div>
         <ul className="tags quest-card__tags">
           <li className="tags__item">
             <svg width={11} height={14} aria-hidden="true">
               <use xlinkHref="#icon-person" />
             </svg>
-            {`${quest.peopleMinMax[0]} - ${quest.peopleMinMax[1]}`}&nbsp;чел
+            {
+              isReservations
+                ?
+                detailedInfo?.peopleCount
+                :
+                `${quest.peopleMinMax[0]} - ${quest.peopleMinMax[1]}`
+            }&nbsp;чел
           </li>
           <li className="tags__item">
             <svg width={14} height={14} aria-hidden="true">
@@ -48,6 +74,18 @@ export default function Card({quest} : TCardProps) : JSX.Element {
             {difficulty}
           </li>
         </ul>
+        {
+          isReservations
+            ?
+            <button
+              className="btn btn--accent btn--secondary quest-card__btn"
+              type="button"
+            >
+                Отменить
+            </button>
+            :
+            ''
+        }
       </div>
     </div>
   );
