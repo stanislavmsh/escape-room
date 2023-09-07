@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { TSingleQuestData } from '../../types/state';
 import { NameSpace } from '../../const';
-import { fetchSingleQuestAction } from './single-quest-data.action';
+import { fetchSingleQuestAction, sendReservationFormAction } from './single-quest-data.action';
 import { TCurrentQuest } from '../../types/current-quest';
 import { TBooking } from '../../types/booking';
 
@@ -37,6 +37,9 @@ export const singleQuestData = createSlice({
         state.isDataLoading = false;
       })
       .addCase(fetchSingleQuestAction.rejected, (state) => {
+        state.hasError = true;
+      })
+      .addCase(sendReservationFormAction.rejected, (state) => {
         state.hasError = true;
       });
   }

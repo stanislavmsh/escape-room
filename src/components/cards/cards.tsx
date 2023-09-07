@@ -1,6 +1,7 @@
 import { TBookingStatus } from '../../types/booking-status';
 import { TQuest } from '../../types/quest';
 import Card from '../card/card';
+import NoCards from '../no-cards/no-cards';
 
 type TCardsProps = {
   questsList: TQuest[] | TBookingStatus[];
@@ -8,6 +9,10 @@ type TCardsProps = {
 }
 
 export default function Cards({questsList, isReservations} : TCardsProps) {
+
+  if(questsList.length === 0) {
+    return <NoCards isReservations={isReservations}/>;
+  }
 
   return(
     <div className="cards-grid">

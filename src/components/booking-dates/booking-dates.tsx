@@ -1,11 +1,14 @@
+import { UseFormRegister , UseFormSetValue} from 'react-hook-form';
 import { TSlots } from '../../types/booking';
+import { TBookingForm } from '../booking-form/booking-form';
 
 type BookingDatesProps = {
   slots: TSlots;
+  register: UseFormRegister<TBookingForm>;
+  setValue : UseFormSetValue<TBookingForm>;
 }
 
-export default function BookingDates({slots} : BookingDatesProps) : JSX.Element {
-
+export default function BookingDates({slots , register , setValue} : BookingDatesProps) : JSX.Element {
 
   return (
     <fieldset className="booking-form__section">
@@ -18,10 +21,10 @@ export default function BookingDates({slots} : BookingDatesProps) : JSX.Element 
               <input
                 type="radio"
                 id={`today${elem.time.replace(':','h')}m`}
-                name="date"
-                required
+                {...register('date' , {required: true})}
                 defaultValue={`today${elem.time.replace(':','h')}m`}
-                disabled={elem.isAvailable}
+                onChange={() => setValue('time' , elem.time)}
+                disabled={!elem.isAvailable}
               />
               <span className="custom-radio__label">{elem.time}</span>
             </label>
@@ -36,10 +39,10 @@ export default function BookingDates({slots} : BookingDatesProps) : JSX.Element 
               <input
                 type="radio"
                 id={`tomorrow${elem.time.replace(':','h')}m`}
-                name="date"
-                required
+                {...register('date' , {required: true})}
                 defaultValue={`tomorrow${elem.time.replace(':','h')}m`}
-                disabled={elem.isAvailable}
+                onChange={() => setValue('time' , elem.time)}
+                disabled={!elem.isAvailable}
               />
               <span className="custom-radio__label">{elem.time}</span>
             </label>

@@ -1,10 +1,17 @@
 import Cards from '../../components/cards/cards';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { fetchReservationAction } from '../../store/quests-data/quests-data.action';
 import { getReservations } from '../../store/quests-data/quests-data.selectors';
+import { useEffect } from 'react';
 
 export default function MyQuestsPage () : JSX.Element {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchReservationAction());
+  },[dispatch]);
 
   const reservations = useAppSelector(getReservations);
 

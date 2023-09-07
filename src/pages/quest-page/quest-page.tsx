@@ -20,7 +20,7 @@ export default function QuestPage(): JSX.Element {
 
   const currentQuest = useAppSelector(getCurrentQuest);
 
-  const difficulty = humanizeDifficulty(currentQuest?.level);
+  const difficultyHumanized = humanizeDifficulty(currentQuest?.level);
   const theme = humanizeTheme(currentQuest?.type);
 
   if(isLoading || currentQuest === null) {
@@ -69,7 +69,7 @@ export default function QuestPage(): JSX.Element {
                 <svg width={14} height={14} aria-hidden="true">
                   <use xlinkHref="#icon-level" />
                 </svg>
-                {difficulty}
+                {difficultyHumanized}
               </li>
             </ul>
             <p className="quest-page__description">

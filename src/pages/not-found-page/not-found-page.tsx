@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Header from '../../components/header/header';
+import styles from './not-found-page.module.css';
 
 
 export default function NotFoundPage(): JSX.Element {
@@ -9,9 +10,10 @@ export default function NotFoundPage(): JSX.Element {
     <div className="wrapper">
       <Header />
       <section className="not--found">
-        <h1>404. Page not found
-        </h1>
-        <Link to="/">Вернуться на главную</Link>
+        <p className={`title title--size-s ${styles['not--found']}`}>404. Page not found</p>
+        <div className={`title ${styles['back']}`} >
+          <Link to="/">Вернуться на главную</Link>
+        </div>
       </section>
     </div>
   );

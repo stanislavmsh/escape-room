@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { TQuest } from '../../types/quest';
-import { humanizeDifficulty } from '../../utils/utils';
+import { humanizeDate, humanizeDifficulty } from '../../utils/utils';
 import { TBookingStatus } from '../../types/booking-status';
+import { useAppDispatch } from '../../hooks';
+import { fetchReservationAction, removeReservationAction } from '../../store/quests-data/quests-data.action';
 
 type TCardProps = {
   data: TQuest | TBookingStatus;
@@ -9,19 +11,27 @@ type TCardProps = {
 }
 
 export default function Card({data , isReservations} : TCardProps) : JSX.Element {
+  const dispatch = useAppDispatch();
 
-  let difficulty;
-  let quest;
+  let difficultyHumanized;
+  let quest: TQuest;
   let detailedInfo;
+  let reservationInfo: TBookingStatus;
 
   if('level' in data) {
-    difficulty = humanizeDifficulty(data.level);
+    difficultyHumanized = humanizeDifficulty(data.level);
     quest = data;
   } else {
-    difficulty = humanizeDifficulty(data.quest.level);
-    quest = data.quest;
+    difficultyHumanized = humanizeDifficulty(data.quest.level);
+    reservationInfo = data;
+    quest = reservationInfo.quest;
     detailedInfo = data;
   }
+
+  const handleCancelClick = (str: string) => {
+    dispatch(removeReservationAction(str));
+    dispatch(fetchReservationAction());
+  };
 
   return(
 
@@ -49,7 +59,7 @@ export default function Card({data , isReservations} : TCardProps) : JSX.Element
           {isReservations
             ?
             <span className="quest-card__info">
-              {detailedInfo?.date},&nbsp;{detailedInfo?.time}. {detailedInfo?.location.address}
+              {humanizeDate(detailedInfo?.date)},&nbsp;{detailedInfo?.time}. {detailedInfo?.location.address}
             </span>
             :
             ''}
@@ -71,7 +81,7 @@ export default function Card({data , isReservations} : TCardProps) : JSX.Element
             <svg width={14} height={14} aria-hidden="true">
               <use xlinkHref="#icon-level" />
             </svg>
-            {difficulty}
+            {difficultyHumanized}
           </li>
         </ul>
         {
@@ -80,6 +90,7 @@ export default function Card({data , isReservations} : TCardProps) : JSX.Element
             <button
               className="btn btn--accent btn--secondary quest-card__btn"
               type="button"
+              onClick={() => handleCancelClick(reservationInfo.id)}
             >
                 Отменить
             </button>

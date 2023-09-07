@@ -49,9 +49,6 @@ export const questsData = createSlice({
       .addCase(fetchQuestAction.pending, (state) => {
         state.isDataLoading = true;
       })
-      .addCase(fetchReservationAction.pending, (state) => {
-        state.isDataLoading = true;
-      })
       .addCase(fetchQuestAction.fulfilled, (state, action) => {
         state.quests = action.payload;
         state.sortedQuests = action.payload;

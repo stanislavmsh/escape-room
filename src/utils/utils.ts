@@ -16,3 +16,7 @@ export function humanizeTheme(value: string | undefined) {
     }
   });
 }
+
+export function humanizeDate(value: string | undefined) {
+  return value === 'today' ? 'сегодня' : 'завтра';
+}

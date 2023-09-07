@@ -1,17 +1,58 @@
 import BookingDates from '../booking-dates/booking-dates';
-import { getBookingInfo, getCurrentLocationInfo } from '../../store/single-quest-data/single-quest-data.selectors';
-import { useAppSelector } from '../../hooks';
+import { getBookingInfo, getCurrentLocationInfo, getCurrentQuest } from '../../store/single-quest-data/single-quest-data.selectors';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import BookingMap from '../booking-map/booking-map';
+import {useForm , SubmitHandler } from 'react-hook-form';
+import { sendReservationFormAction } from '../../store/single-quest-data/single-quest-data.action';
+import { fetchReservationAction } from '../../store/quests-data/quests-data.action';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../const';
+
+export type TBookingForm = {
+  date: 'today'|'tomorrow';
+  time: string;
+  contactPerson: string;
+  phone: string;
+  peopleCount: number;
+  withChildren: boolean;
+}
 
 export default function BookingForm() : JSX.Element {
-
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const bookingInfo = useAppSelector(getBookingInfo);
-
-  // const test = bookingInfo[2].id;
-
-  // const currentLocaion = bookingInfo.find((date) => date.id === test);
-
   const currentLocaion = useAppSelector(getCurrentLocationInfo);
+  const currentQuest = useAppSelector(getCurrentQuest);
+
+  const [isActive , setIsActive] = useState<boolean>(false);
+
+  const { register, handleSubmit , setValue , formState : { isValid } , reset } = useForm<TBookingForm>({mode: 'onBlur', criteriaMode: 'all'});
+
+  const extractDay = (input: string) => {
+    if (input.startsWith('today')) {
+      return 'today';
+    }
+    if (input.startsWith('tomorrow')) {
+      return 'tomorrow';
+    }
+  };
+
+  const handleCheckboxChange = () => {
+    setIsActive((current) => !current);
+  };
+
+  const submit: SubmitHandler<TBookingForm> = (data) => {
+    if (currentLocaion && currentQuest) {
+      const dataForServer = {...data, placeId: currentLocaion.id, peopleCount: Number(data.peopleCount) , date: extractDay(data.date) as 'today'|'tomorrow' };
+      dispatch(sendReservationFormAction({data: dataForServer , questId: currentQuest.id}));
+      dispatch(fetchReservationAction());
+    }
+    reset();
+    navigate(AppRoute.MyQuests);
+  };
+
+  const isButtonDisabled = isActive && isValid;
 
   return (
     <>
@@ -27,11 +68,14 @@ export default function BookingForm() : JSX.Element {
       </div>
 
       <form
+        onSubmit={(evt) => {
+          handleSubmit(submit)(evt);
+        }}
         className="booking-form"
         action="https://echo.htmlacademy.ru/"
         method="post"
       >
-        {currentLocaion && <BookingDates slots={currentLocaion.slots}/>}
+        {currentLocaion && <BookingDates setValue={setValue} register={register} slots={currentLocaion.slots}/>}
         <fieldset className="booking-form__section">
           <legend className="visually-hidden">Контактная информация</legend>
           <div className="custom-input booking-form__input">
@@ -41,10 +85,10 @@ export default function BookingForm() : JSX.Element {
             <input
               type="text"
               id="name"
-              name="name"
               placeholder="Имя"
-              required
               pattern="[А-Яа-яЁёA-Za-z'- ]{1,}"
+              maxLength={15}
+              {...register('contactPerson', {required: true })}
             />
           </div>
           <div className="custom-input booking-form__input">
@@ -54,29 +98,31 @@ export default function BookingForm() : JSX.Element {
             <input
               type="tel"
               id="tel"
-              name="tel"
               placeholder="Телефон"
-              required
-              pattern="[0-9]{10,}"
+              pattern="^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$"
+              {...register('phone', {required: true })}
             />
           </div>
           <div className="custom-input booking-form__input">
             <label className="custom-input__label" htmlFor="person">
         Количество участников
             </label>
-            <input
-              type="number"
-              id="person"
-              name="person"
-              placeholder="Количество участников"
-              required
-            />
+            {currentQuest &&
+             <input
+               type="number"
+               id="person"
+               placeholder={`Количество участников от ${currentQuest.peopleMinMax[0]} до ${currentQuest.peopleMinMax[1]}`}
+               {...register('peopleCount', {required: true, validate: (value) => {
+                 const isPlayersValid = value >= currentQuest?.peopleMinMax[0] && value <= currentQuest?.peopleMinMax[1];
+                 return isPlayersValid;
+               }})}
+             />}
           </div>
           <label className="custom-checkbox booking-form__checkbox booking-form__checkbox--children">
             <input
               type="checkbox"
               id="children"
-              name="children"
+              {...register('withChildren')}
               defaultChecked
             />
             <span className="custom-checkbox__icon">
@@ -92,6 +138,7 @@ export default function BookingForm() : JSX.Element {
         <button
           className="btn btn--accent btn--cta booking-form__submit"
           type="submit"
+          disabled={!isButtonDisabled}
         >
     Забронировать
         </button>
@@ -100,6 +147,7 @@ export default function BookingForm() : JSX.Element {
             type="checkbox"
             id="id-order-agreement"
             name="user-agreement"
+            onChange={handleCheckboxChange}
             required
           />
           <span className="custom-checkbox__icon">

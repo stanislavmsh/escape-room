@@ -41,7 +41,6 @@ export default function LoginForm() {
   const isPasswordValid = regexPassword.test(inputValues.password);
   const isLoginValid = regexEmail.test(inputValues.email);
   const isUserInfoValid = isPasswordValid && isLoginValid;
-  const isFormReady = isUserInfoValid && isChecked;
 
 
   return(
@@ -87,7 +86,7 @@ export default function LoginForm() {
           <button
             className="btn btn--accent btn--general login-form__submit"
             type="submit"
-            disabled={!isFormReady}
+            disabled={!isUserInfoValid}
           >
                 Войти
           </button>

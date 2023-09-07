@@ -6,6 +6,9 @@ import { setCurrentBookingInfo, setCurrentQuest } from './single-quest-data.slic
 import { TCurrentQuest } from '../../types/current-quest';
 import { redirectToRoute } from '../action';
 import { TBooking } from '../../types/booking';
+import { TBookingRequest } from '../../types/booking-request';
+import { getToken } from '../../services/token';
+import { toast } from 'react-toastify';
 
 
 export const fetchSingleQuestAction = createAsyncThunk<void, string, {
@@ -32,5 +35,28 @@ export const fetchSingleQuestAction = createAsyncThunk<void, string, {
       dispatch(redirectToRoute(AppRoute.NotFound));
     }
   }
+);
+
+export const sendReservationFormAction = createAsyncThunk<void , {data: TBookingRequest; questId: string}, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/sendReservationform',
+  async ({data, questId}) => {
+    const token = getToken();
+    try {
+      await axios.post<TBookingRequest>(
+        `${BACKEND_URL}${APIRoute.Quest}/${questId}${APIRoute.Booking}` ,
+        data,
+        {
+          headers: {'x-token': token}
+        }
+      );
+    } catch {
+      toast.warn('Ошибка бронирования');
+    }
+  }
+
 );
 
