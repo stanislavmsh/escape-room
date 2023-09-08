@@ -1,5 +1,5 @@
 import Cards from '../../components/cards/cards';
-import Footer from '../../components/footer/footer';
+import MemoizedFooter from '../../components/footer/footer';
 import MemoizedHeader from '../../components/header/header';
 import Sorting from '../../components/sorting/sorting';
 import { useAppSelector } from '../../hooks';
@@ -28,7 +28,7 @@ export default function MainPage() {
           <Cards questsList={questsList} isReservations={false}/>
         </div>
       </main>
-      <Footer />
+      <MemoizedFooter />
     </div>
 
   );

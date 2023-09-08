@@ -1,4 +1,4 @@
-import Footer from '../../components/footer/footer';
+import MemoizedFooter from '../../components/footer/footer';
 import MemoizedHeader from '../../components/header/header';
 import LoginForm from '../../components/login-form/login-form';
 import { useAppSelector } from '../../hooks';
@@ -39,7 +39,7 @@ export default function LoginPage(): JSX.Element {
           </div>
         </div>
       </main>
-      <Footer />
+      <MemoizedFooter />
     </div>
 
   );

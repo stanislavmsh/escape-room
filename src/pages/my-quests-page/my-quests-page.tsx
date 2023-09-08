@@ -1,5 +1,5 @@
 import Cards from '../../components/cards/cards';
-import Footer from '../../components/footer/footer';
+import MemoizedFooter from '../../components/footer/footer';
 import MemoizedHeader from '../../components/header/header';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchReservationAction } from '../../store/quests-data/quests-data.action';
@@ -43,7 +43,7 @@ export default function MyQuestsPage () : JSX.Element {
           <Cards questsList={reservations} isReservations/>
         </div>
       </main>
-      <Footer />
+      <MemoizedFooter />
     </div>
 
   );

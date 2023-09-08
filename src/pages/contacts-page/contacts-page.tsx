@@ -1,4 +1,4 @@
-import Footer from '../../components/footer/footer';
+import MemoizedFooter from '../../components/footer/footer';
 import MemoizedHeader from '../../components/header/header';
 
 import ContactsMap from '../../components/contacts-map/contacts-map';
@@ -368,7 +368,7 @@ export default function ContactsPage() : JSX.Element {
             </div>
           </div>
         </main>
-        <Footer />
+        <MemoizedFooter />
       </div>
     </>
   );

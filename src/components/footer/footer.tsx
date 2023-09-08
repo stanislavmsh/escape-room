@@ -1,4 +1,6 @@
-export default function Footer(): JSX.Element {
+import React from 'react';
+
+function Footer(): JSX.Element {
 
   return(
 
@@ -64,3 +66,7 @@ export default function Footer(): JSX.Element {
     </footer>
   );
 }
+
+const MemoizedFooter = React.memo(Footer);
+
+export default MemoizedFooter;

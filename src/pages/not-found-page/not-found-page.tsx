@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import MemoizedHeader from '../../components/header/header';
+import MemoizedFooter from '../../components/footer/footer';
 import styles from './not-found-page.module.css';
 
 
@@ -15,6 +16,7 @@ export default function NotFoundPage(): JSX.Element {
           <Link to="/">Вернуться на главную</Link>
         </div>
       </section>
+      <MemoizedFooter />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import Footer from '../../components/footer/footer';
+import MemoizedFooter from '../../components/footer/footer';
 import MemoizedHeader from '../../components/header/header';
 import { fetchSingleQuestAction } from '../../store/single-quest-data/single-quest-data.action';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -84,7 +84,7 @@ export default function QuestPage(): JSX.Element {
           </div>
         </div>
       </main>
-      <Footer />
+      <MemoizedFooter />
     </div>
 
   );

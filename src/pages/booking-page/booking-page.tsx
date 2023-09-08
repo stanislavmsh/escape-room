@@ -1,5 +1,5 @@
 import MemoizedHeader from '../../components/header/header';
-import Footer from '../../components/footer/footer';
+import MemoizedFooter from '../../components/footer/footer';
 import BookingForm from '../../components/booking-form/booking-form';
 import { useAppSelector } from '../../hooks';
 import { getCurrentQuest } from '../../store/single-quest-data/single-quest-data.selectors';
@@ -43,7 +43,7 @@ export default function BookingPage() : JSX.Element {
           <BookingForm />
         </div>
       </main>
-      <Footer />
+      <MemoizedFooter />
     </div>
   );
 }
