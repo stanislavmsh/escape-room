@@ -3,16 +3,18 @@ import { Icon, Marker, layerGroup } from 'leaflet';
 import useMap from '../../hooks/use-map';
 import style from './booking-map.module.css';
 import { TBooking} from '../../types/booking';
-import 'leaflet/dist/leaflet.css';
-
 import iconActive from '../../../markup/img/svg/pin-active.svg';
 import iconDefault from '../../../markup/img/svg/pin-default.svg';
 import { useAppDispatch } from '../../hooks';
 import { setCurrentLocationInfo } from '../../store/single-quest-data/single-quest-data.slice';
+import { UseFormReset } from 'react-hook-form';
+import { TBookingForm } from '../../types/booking-request';
+import 'leaflet/dist/leaflet.css';
 
 type TMapProps = {
   options: TBooking[];
   selectedOption: TBooking;
+  reset: UseFormReset<TBookingForm>;
 };
 
 const defaultCustomIcon = new Icon({
@@ -27,7 +29,7 @@ const activeCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-export default function BookingMap ({options , selectedOption}: TMapProps) : JSX.Element {
+export default function BookingMap ({options , selectedOption , reset}: TMapProps) : JSX.Element {
   const dispatch = useAppDispatch();
   const mapRef = useRef(null);
   const map = useMap(mapRef, selectedOption.location, true);
@@ -55,6 +57,7 @@ export default function BookingMap ({options , selectedOption}: TMapProps) : JSX
         marker.on('click', () => {
           dispatch(setCurrentLocationInfo(option.id));
           map.flyTo([option.location.coords[0], option.location.coords[1]]);
+          reset();
         });
       });
 

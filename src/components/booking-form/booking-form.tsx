@@ -64,7 +64,7 @@ export default function BookingForm() : JSX.Element {
       <div className="page-content__item">
         <div className="booking-map">
           <div className="map">
-            {currentLocaion && <BookingMap options={bookingInfo} selectedOption={currentLocaion}/>}
+            {currentLocaion && <BookingMap options={bookingInfo} selectedOption={currentLocaion} reset={reset}/>}
           </div>
           <p className="booking-map__address">
       Вы&nbsp;выбрали:&nbsp;{currentLocaion?.location.address}
