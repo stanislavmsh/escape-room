@@ -25,21 +25,34 @@ export default function BookingForm() : JSX.Element {
   const currentLocaion = useAppSelector(getCurrentLocationInfo);
   const currentQuest = useAppSelector(getCurrentQuest);
 
+  const phoneRegExp = new RegExp('^(\\+7|7|8)?[\\s\\-]?\\(?[489][0-9]{2}\\)?[\\s\\-]?[0-9]{3}[\\s\\-]?[0-9]{2}[\\s\\-]?[0-9]{2}$');
+  const nameRegExp = new RegExp('[A-Za-zА-Яа-яЁё\\s\'\\-]+');
+
   const [isActive , setIsActive] = useState<boolean>(false);
 
-  const { register, handleSubmit , setValue , formState : { isValid } , reset } = useForm<TBookingForm>({mode: 'onBlur', criteriaMode: 'all'});
+  const { register, handleSubmit , setValue , formState : { errors } , reset } = useForm<TBookingForm>({mode: 'onSubmit', criteriaMode: 'all'});
 
-  const extractDay = (input: string) => {
-    if (input.startsWith('today')) {
+  const extractDay = (str: string) => {
+    if (str.startsWith('today')) {
       return 'today';
     }
-    if (input.startsWith('tomorrow')) {
+    if (str.startsWith('tomorrow')) {
       return 'tomorrow';
     }
   };
 
   const handleCheckboxChange = () => {
     setIsActive((current) => !current);
+  };
+
+  const handlePhoneChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const numericValue = evt.target.value.replace(/[^\d]/g, '');
+
+    let formattedValue = '';
+    if (numericValue.length > 0) {
+      formattedValue = `+7 (${numericValue.slice(1, 4)}) ${numericValue.slice(4, 7)}-${numericValue.slice(7, 9)}-${numericValue.slice(9, 11)}`;
+    }
+    evt.target.value = formattedValue;
   };
 
   const submit: SubmitHandler<TBookingForm> = (data) => {
@@ -52,7 +65,6 @@ export default function BookingForm() : JSX.Element {
     navigate(AppRoute.MyQuests);
   };
 
-  const isButtonDisabled = isActive && isValid;
 
   return (
     <>
@@ -86,10 +98,14 @@ export default function BookingForm() : JSX.Element {
               type="text"
               id="name"
               placeholder="Имя"
-              pattern="[А-Яа-яЁёA-Za-z'- ]{1,}"
               maxLength={15}
-              {...register('contactPerson', {required: true })}
+              {...register('contactPerson', {required: true , validate: (value) => {
+                const isNameValid = nameRegExp.test(value);
+                return isNameValid;
+              }})}
+              aria-invalid={errors.contactPerson ? 'true' : 'false'}
             />
+            {errors.contactPerson && <span role="alert">Ошибка: Введите свое имя </span>}
           </div>
           <div className="custom-input booking-form__input">
             <label className="custom-input__label" htmlFor="tel">
@@ -99,9 +115,14 @@ export default function BookingForm() : JSX.Element {
               type="tel"
               id="tel"
               placeholder="Телефон"
-              pattern="^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$"
-              {...register('phone', {required: true })}
+              {...register('phone', {required: true , validate: (value) => {
+                const isPhoneValid = phoneRegExp.test(value);
+                return isPhoneValid;
+              }})}
+              onChange={handlePhoneChange}
+              aria-invalid={errors.phone ? 'true' : 'false'}
             />
+            {errors.phone && <span role="alert">Ошибка: Укажите телефон в RU формате. Прим. +7 (XXX) XXX-XX-XX </span>}
           </div>
           <div className="custom-input booking-form__input">
             <label className="custom-input__label" htmlFor="person">
@@ -111,12 +132,14 @@ export default function BookingForm() : JSX.Element {
              <input
                type="number"
                id="person"
-               placeholder={`Количество участников от ${currentQuest.peopleMinMax[0]} до ${currentQuest.peopleMinMax[1]}`}
+               placeholder={'Количество участников'}
                {...register('peopleCount', {required: true, validate: (value) => {
-                 const isPlayersValid = value >= currentQuest?.peopleMinMax[0] && value <= currentQuest?.peopleMinMax[1];
-                 return isPlayersValid;
+                 const isPlayersAmountValid = value >= currentQuest?.peopleMinMax[0] && value <= currentQuest?.peopleMinMax[1];
+                 return isPlayersAmountValid;
                }})}
+               aria-invalid={errors.peopleCount ? 'true' : 'false'}
              />}
+            {errors.peopleCount && <span role="alert">Ошибка: Возможно от {currentQuest?.peopleMinMax[0]} до {currentQuest?.peopleMinMax[1]} участников</span>}
           </div>
           <label className="custom-checkbox booking-form__checkbox booking-form__checkbox--children">
             <input
@@ -138,7 +161,7 @@ export default function BookingForm() : JSX.Element {
         <button
           className="btn btn--accent btn--cta booking-form__submit"
           type="submit"
-          disabled={!isButtonDisabled}
+          disabled={!isActive}
         >
     Забронировать
         </button>
