@@ -66,7 +66,7 @@ export default function BookingMap ({options , selectedOption , reset}: TMapProp
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, selectedOption, options, dispatch]);
+  }, [map, selectedOption, options, dispatch , reset]);
 
   return <div className={style.map_iframe} ref={mapRef}></div>;
 
