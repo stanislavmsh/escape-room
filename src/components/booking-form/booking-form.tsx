@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../utils/const';
 import { TBookingForm } from '../../types/booking-request';
+import style from './booking-form.module.css';
 
 export default function BookingForm() : JSX.Element {
   const navigate = useNavigate();
@@ -133,7 +134,7 @@ export default function BookingForm() : JSX.Element {
              />}
             {errors.peopleCount && <span role="alert">Ошибка: Возможно от {currentQuest?.peopleMinMax[0]} до {currentQuest?.peopleMinMax[1]} участников</span>}
           </div>
-          <label className="custom-checkbox booking-form__checkbox booking-form__checkbox--children">
+          <label className={`custom-checkbox booking-form__checkbox booking-form__checkbox--children ${style['with-children--fixed']}`}>
             <input
               type="checkbox"
               id="children"
