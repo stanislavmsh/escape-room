@@ -3,7 +3,8 @@ import { TQuest } from '../../types/quest';
 import { humanizeDate, humanizeDifficulty } from '../../utils/utils';
 import { TBookingStatus } from '../../types/booking-status';
 import { useAppDispatch } from '../../hooks';
-import { fetchReservationAction, removeReservationAction } from '../../store/quests-data/quests-data.action';
+import { removeReservationAction } from '../../store/quests-data/quests-data.action';
+import { removeReservedQuest } from '../../store/quests-data/quests-data.slice';
 
 type TCardProps = {
   data: TQuest | TBookingStatus;
@@ -30,7 +31,7 @@ export default function Card({data , isReservations} : TCardProps) : JSX.Element
 
   const handleCancelClick = (str: string) => {
     dispatch(removeReservationAction(str));
-    dispatch(fetchReservationAction());
+    dispatch(removeReservedQuest(str));
   };
 
   return(

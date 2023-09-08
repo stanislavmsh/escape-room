@@ -8,15 +8,7 @@ import { fetchReservationAction } from '../../store/quests-data/quests-data.acti
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../utils/const';
-
-export type TBookingForm = {
-  date: 'today'|'tomorrow';
-  time: string;
-  contactPerson: string;
-  phone: string;
-  peopleCount: number;
-  withChildren: boolean;
-}
+import { TBookingForm } from '../../types/booking-request';
 
 export default function BookingForm() : JSX.Element {
   const navigate = useNavigate();

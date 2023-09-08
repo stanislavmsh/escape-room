@@ -1,6 +1,6 @@
 import { UseFormRegister , UseFormSetValue} from 'react-hook-form';
 import { TSlots } from '../../types/booking';
-import { TBookingForm } from '../booking-form/booking-form';
+import { TBookingForm } from '../../types/booking-request';
 
 type BookingDatesProps = {
   slots: TSlots;

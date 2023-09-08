@@ -42,7 +42,7 @@ export const sendReservationFormAction = createAsyncThunk<void , {data: TBooking
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/sendReservationform',
+  'data/sendReservationForm',
   async ({data, questId}) => {
     const token = getToken();
     try {

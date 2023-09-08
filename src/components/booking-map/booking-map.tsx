@@ -34,10 +34,15 @@ export default function BookingMap ({options , selectedOption}: TMapProps) : JSX
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
+      let additionalLng = 0;
       options.forEach((option) => {
+        additionalLng += 0.0001;
+
+        const isSame = options.find((elem) => elem.location.address === option.location.address);
+
         const marker = new Marker({
           lat: option.location.coords[0],
-          lng: option.location.coords[1],
+          lng: option.location.coords[1] + (isSame ? additionalLng : 0),
         });
 
         marker.setIcon(

@@ -40,6 +40,9 @@ export const questsData = createSlice({
           state.currentDifficulty = action.payload;
           state.sortedQuests = state.quests.filter((elem) => elem.level === action.payload && (state.currentTheme === SortingTheme[0].id || elem.type === state.currentTheme));
       }
+    },
+    removeReservedQuest: (state, action: PayloadAction<string>) => {
+      state.reservations = state.reservations.filter((elem) => elem.id !== action.payload);
     }
 
 
@@ -71,4 +74,4 @@ export const questsData = createSlice({
 });
 
 
-export const { sortQuestsByTheme , sortQuestsByDifficulty } = questsData.actions;
+export const { sortQuestsByTheme , sortQuestsByDifficulty , removeReservedQuest} = questsData.actions;
