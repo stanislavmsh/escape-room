@@ -1,4 +1,4 @@
-import Header from '../../components/header/header';
+import MemoizedHeader from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import BookingForm from '../../components/booking-form/booking-form';
 import { useAppSelector } from '../../hooks';
@@ -12,7 +12,7 @@ export default function BookingPage() : JSX.Element {
   return(
 
     <div className="wrapper">
-      <Header />
+      <MemoizedHeader />
       <main className="page-content decorated-page">
         <div className="decorated-page__decor" aria-hidden="true">
           <picture>

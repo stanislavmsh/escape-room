@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import Footer from '../../components/footer/footer';
-import Header from '../../components/header/header';
+import MemoizedHeader from '../../components/header/header';
 import { fetchSingleQuestAction } from '../../store/single-quest-data/single-quest-data.action';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getCurrentLoadingStatus, getCurrentQuest } from '../../store/single-quest-data/single-quest-data.selectors';
@@ -31,7 +31,7 @@ export default function QuestPage(): JSX.Element {
   return(
 
     <div className="wrapper">
-      <Header />
+      <MemoizedHeader />
       <main className="decorated-page quest-page">
         <div className="decorated-page__decor" aria-hidden="true">
           <picture>

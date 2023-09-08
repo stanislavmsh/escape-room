@@ -1,6 +1,6 @@
 import Cards from '../../components/cards/cards';
 import Footer from '../../components/footer/footer';
-import Header from '../../components/header/header';
+import MemoizedHeader from '../../components/header/header';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchReservationAction } from '../../store/quests-data/quests-data.action';
 import { getReservations } from '../../store/quests-data/quests-data.selectors';
@@ -17,7 +17,7 @@ export default function MyQuestsPage () : JSX.Element {
 
   return(
     <div className="wrapper">
-      <Header />
+      <MemoizedHeader />
       <main className="page-content decorated-page">
         <div className="decorated-page__decor" aria-hidden="true">
           <picture>

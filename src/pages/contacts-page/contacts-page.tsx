@@ -1,5 +1,5 @@
 import Footer from '../../components/footer/footer';
-import Header from '../../components/header/header';
+import MemoizedHeader from '../../components/header/header';
 
 import ContactsMap from '../../components/contacts-map/contacts-map';
 
@@ -302,7 +302,7 @@ export default function ContactsPage() : JSX.Element {
         </svg>
       </div>
       <div className="wrapper">
-        <Header />
+        <MemoizedHeader />
         <main className="page-content decorated-page">
           <div className="decorated-page__decor" aria-hidden="true">
             <picture>

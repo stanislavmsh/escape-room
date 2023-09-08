@@ -1,5 +1,5 @@
 import Footer from '../../components/footer/footer';
-import Header from '../../components/header/header';
+import MemoizedHeader from '../../components/header/header';
 import LoginForm from '../../components/login-form/login-form';
 import { useAppSelector } from '../../hooks';
 import { getAuthStatus } from '../../store/user-process/user-process.selectors';
@@ -16,7 +16,7 @@ export default function LoginPage(): JSX.Element {
 
   return(
     <div className="wrapper">
-      <Header />
+      <MemoizedHeader />
       <main className="decorated-page login">
         <div className="decorated-page__decor" aria-hidden="true">
           <picture>

@@ -1,6 +1,6 @@
 import Cards from '../../components/cards/cards';
 import Footer from '../../components/footer/footer';
-import Header from '../../components/header/header';
+import MemoizedHeader from '../../components/header/header';
 import Sorting from '../../components/sorting/sorting';
 import { useAppSelector } from '../../hooks';
 import { getSortedQuests } from '../../store/quests-data/quests-data.selectors';
@@ -12,7 +12,7 @@ export default function MainPage() {
   return(
 
     <div className="wrapper">
-      <Header />
+      <MemoizedHeader />
       <main className="page-content">
         <div className="container">
           <div className="page-content__title-wrapper">
