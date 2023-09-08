@@ -1,5 +1,5 @@
 import { store } from '../store';
-import { AuthStatus } from '../const';
+import { AuthStatus } from '../utils/const';
 import { TQuest} from './quest';
 import { TCurrentQuest } from './current-quest';
 import { TBooking } from './booking';
@@ -8,7 +8,6 @@ import { TBookingStatus } from './booking-status';
 export type TUserProcess = {
   authorizationStatus: AuthStatus;
 }
-
 
 export type TQuestsData = {
   currentDifficulty: string;

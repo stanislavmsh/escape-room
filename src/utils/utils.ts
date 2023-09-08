@@ -1,4 +1,4 @@
-import { SortingDifficulty, SortingTheme } from '../const';
+import { SortingDifficulty, SortingTheme } from './const';
 
 export function humanizeDifficulty(value: string | undefined) {
   return SortingDifficulty.map((elem) => {

@@ -1,4 +1,4 @@
-import { NameSpace } from '../../const';
+import { NameSpace } from '../../utils/const';
 import { TBookingStatus } from '../../types/booking-status';
 import { TQuest } from '../../types/quest';
 import { State } from '../../types/state';

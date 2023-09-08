@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useCallback } from 'react';
-import { AppRoute, AuthStatus } from '../../const';
+import { AppRoute, AuthStatus } from '../../utils/const';
 import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getAuthStatus } from '../../store/user-process/user-process.selectors';

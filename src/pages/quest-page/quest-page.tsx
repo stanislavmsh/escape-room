@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getCurrentLoadingStatus, getCurrentQuest } from '../../store/single-quest-data/single-quest-data.selectors';
 import LoadingScreen from '../loading-page/loading-page';
 import { humanizeDifficulty, humanizeTheme } from '../../utils/utils';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../utils/const';
 
 export default function QuestPage(): JSX.Element {
   const dispatch = useAppDispatch();

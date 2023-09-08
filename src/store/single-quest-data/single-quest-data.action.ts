@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosInstance } from 'axios';
 import { AppDispatch, State} from '../../types/state';
-import { APIRoute, AppRoute, BACKEND_URL } from '../../const';
+import { APIRoute, AppRoute, BACKEND_URL } from '../../utils/const';
 import { setCurrentBookingInfo, setCurrentQuest } from './single-quest-data.slice';
 import { TCurrentQuest } from '../../types/current-quest';
 import { redirectToRoute } from '../action';

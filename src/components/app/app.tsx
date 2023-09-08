@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../utils/const';
 import { useAppSelector } from '../../hooks';
 import { getAuthCheckedStatus, getAuthStatus } from '../../store/user-process/user-process.selectors';
 import { getErrorStatus, getLoadingStatus } from '../../store/quests-data/quests-data.selectors';

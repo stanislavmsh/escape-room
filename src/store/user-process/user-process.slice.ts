@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {NameSpace, AuthStatus} from '../../const';
+import {NameSpace, AuthStatus} from '../../utils/const';
 import {TUserProcess} from '../../types/state';
 import {checkAuthAction, loginAction, logoutAction} from './user-process.action';
 

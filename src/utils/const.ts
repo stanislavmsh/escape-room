@@ -90,7 +90,7 @@ export const SortingTheme = [
     iconH: 30,
   },
 
-];
+] as const;
 
 
 export const BACKEND_URL = 'https://grading.design.pages.academy/v1/escape-room';

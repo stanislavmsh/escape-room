@@ -1,15 +1,29 @@
 import React, { useState, FormEvent } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/user-process/user-process.action';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type TInputValues = {
   email: string;
   password: string;
 }
 
+type TLocationState = {
+  from: {
+    pathname: string;
+  };
+}
+
+type TLocationObject = {
+  state? : TLocationState;
+}
 
 export default function LoginForm() {
+
   const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
+  const location: TLocationObject = useLocation();
 
   const [isChecked, setIsChecked] = useState(false);
   const [inputValues , setInputValues] = useState<TInputValues>({
@@ -31,7 +45,11 @@ export default function LoginForm() {
 
   const handleSubmit = (evt : FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    dispatch(loginAction(inputValues));
+    dispatch(loginAction(inputValues)).then(() => {
+      if(location.state?.from) {
+        navigate(location.state.from.pathname);
+      }
+    });
     setIsChecked(false);
   };
 

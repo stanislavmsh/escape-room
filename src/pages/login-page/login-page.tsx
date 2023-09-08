@@ -4,7 +4,7 @@ import LoginForm from '../../components/login-form/login-form';
 import { useAppSelector } from '../../hooks';
 import { getAuthStatus } from '../../store/user-process/user-process.selectors';
 import { Navigate } from 'react-router-dom';
-import { AppRoute , AuthStatus } from '../../const';
+import { AppRoute , AuthStatus } from '../../utils/const';
 
 export default function LoginPage(): JSX.Element {
 

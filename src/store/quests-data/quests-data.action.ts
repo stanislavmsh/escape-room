@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosInstance } from 'axios';
 import { AppDispatch, State } from '../../types/state';
-import { APIRoute, BACKEND_URL } from '../../const';
+import { APIRoute, BACKEND_URL } from '../../utils/const';
 import { TQuest } from '../../types/quest';
 import { TBookingStatus } from '../../types/booking-status';
 import { toast } from 'react-toastify';

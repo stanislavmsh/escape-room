@@ -1,4 +1,4 @@
-import { SortingDifficulty , SortingTheme } from '../../const';
+import { SortingDifficulty , SortingTheme } from '../../utils/const';
 import { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { sortQuestsByDifficulty, sortQuestsByTheme } from '../../store/quests-data/quests-data.slice';

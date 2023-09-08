@@ -7,7 +7,7 @@ import { sendReservationFormAction } from '../../store/single-quest-data/single-
 import { fetchReservationAction } from '../../store/quests-data/quests-data.action';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../utils/const';
 
 export type TBookingForm = {
   date: 'today'|'tomorrow';

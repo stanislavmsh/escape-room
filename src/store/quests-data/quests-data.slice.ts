@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { TQuestsData } from '../../types/state';
-import { NameSpace } from '../../const';
+import { NameSpace } from '../../utils/const';
 import { fetchQuestAction, fetchReservationAction } from './quests-data.action';
-import { SortingDifficulty , SortingTheme } from '../../const';
+import { SortingDifficulty , SortingTheme } from '../../utils/const';
 
 
 const initialState: TQuestsData = {
